@@ -1,0 +1,61 @@
+Date : 2022-07-05 13:19:45
+Directory : /home/acer/projects/c++/mymuduo
+Total : 36 files,  1720 codes, 411 comments, 409 blanks, all 2540 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C++      |         35 |      1,706 |        411 |        399 |      2,516 |
+| Markdown |          1 |         14 |          0 |         10 |         24 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                   | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                      |         36 |      1,720 |        411 |        409 |      2,540 |
++--------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                               | language | code       | comment    | blank      | total      |
++--------------------------------------------------------+----------+------------+------------+------------+------------+
+| /home/acer/projects/c++/mymuduo/Acceptor.cc            | C++      |         56 |          5 |          5 |         66 |
+| /home/acer/projects/c++/mymuduo/Acceptor.h             | C++      |         24 |          0 |         13 |         37 |
+| /home/acer/projects/c++/mymuduo/Buffer.cc              | C++      |         39 |         28 |         13 |         80 |
+| /home/acer/projects/c++/mymuduo/Buffer.h               | C++      |         83 |         44 |         24 |        151 |
+| /home/acer/projects/c++/mymuduo/Callbacks.h            | C++      |         12 |          1 |          3 |         16 |
+| /home/acer/projects/c++/mymuduo/Channel.cc             | C++      |         74 |         24 |         12 |        110 |
+| /home/acer/projects/c++/mymuduo/Channel.h              | C++      |         52 |         18 |         26 |         96 |
+| /home/acer/projects/c++/mymuduo/CurrentThread.cc       | C++      |         12 |          1 |          1 |         14 |
+| /home/acer/projects/c++/mymuduo/CurrentThread.h        | C++      |         16 |          0 |          5 |         21 |
+| /home/acer/projects/c++/mymuduo/DefaultPoller.cc       | C++      |         13 |          0 |          2 |         15 |
+| /home/acer/projects/c++/mymuduo/EPollPoller.cc         | C++      |        123 |         29 |         18 |        170 |
+| /home/acer/projects/c++/mymuduo/EPollPoller.h          | C++      |         22 |         46 |         16 |         84 |
+| /home/acer/projects/c++/mymuduo/EventLoop.cc           | C++      |        163 |         66 |         15 |        244 |
+| /home/acer/projects/c++/mymuduo/EventLoop.h            | C++      |         43 |          2 |         22 |         67 |
+| /home/acer/projects/c++/mymuduo/EventLoopThread.cc     | C++      |         50 |          1 |          8 |         59 |
+| /home/acer/projects/c++/mymuduo/EventLoopThread.h      | C++      |         24 |          1 |         11 |         36 |
+| /home/acer/projects/c++/mymuduo/EventLoopThreadPool.cc | C++      |         55 |          2 |          7 |         64 |
+| /home/acer/projects/c++/mymuduo/EventLoopThreadPool.h  | C++      |         29 |          4 |         15 |         48 |
+| /home/acer/projects/c++/mymuduo/InetAddress.cc         | C++      |         29 |          6 |          7 |         42 |
+| /home/acer/projects/c++/mymuduo/InetAddress.h          | C++      |         17 |          1 |          7 |         25 |
+| /home/acer/projects/c++/mymuduo/Logger.cc              | C++      |         33 |          4 |          7 |         44 |
+| /home/acer/projects/c++/mymuduo/Logger.h               | C++      |         60 |          8 |         15 |         83 |
+| /home/acer/projects/c++/mymuduo/Poller.cc              | C++      |         11 |          0 |          3 |         14 |
+| /home/acer/projects/c++/mymuduo/Poller.h               | C++      |         24 |          6 |          7 |         37 |
+| /home/acer/projects/c++/mymuduo/README.md              | Markdown |         14 |          0 |         10 |         24 |
+| /home/acer/projects/c++/mymuduo/Socket.cc              | C++      |         66 |          8 |         12 |         86 |
+| /home/acer/projects/c++/mymuduo/Socket.h               | C++      |         20 |          1 |         10 |         31 |
+| /home/acer/projects/c++/mymuduo/TcpConnection.cc       | C++      |        218 |         43 |         19 |        280 |
+| /home/acer/projects/c++/mymuduo/TcpConnection.h        | C++      |         71 |         28 |         21 |        120 |
+| /home/acer/projects/c++/mymuduo/TcpServer.cc           | C++      |         87 |         26 |         19 |        132 |
+| /home/acer/projects/c++/mymuduo/TcpServer.h            | C++      |         49 |          3 |         18 |         70 |
+| /home/acer/projects/c++/mymuduo/Thread.cc              | C++      |         47 |          3 |          8 |         58 |
+| /home/acer/projects/c++/mymuduo/Thread.h               | C++      |         30 |          0 |         13 |         43 |
+| /home/acer/projects/c++/mymuduo/Timestamp.cc           | C++      |         30 |          0 |          6 |         36 |
+| /home/acer/projects/c++/mymuduo/Timestamp.h            | C++      |         13 |          0 |          5 |         18 |
+| /home/acer/projects/c++/mymuduo/noncopyable.h          | C++      |         11 |          2 |          6 |         19 |
+| Total                                                  |          |      1,720 |        411 |        409 |      2,540 |
++--------------------------------------------------------+----------+------------+------------+------------+------------+
