@@ -126,8 +126,8 @@ void EPollPoller::removeChannel(Channel *channel)
 
 // 填写有事件发生的channel
 // 思考：一个fd可能有多个事件要处理，muduo是在怎么把epoll_wait返回的事件和fd以及channel挂钩的
-// 如果没分析错的话：只要一个event就有一个activeChannel,哪怕epoll_wati返回的几个event可能来自同一个fd，还句话说
-// 如果一个fd有2个事件，那么该fd对应的channel就会被两次push_back到activeChannels中
+// 一个fd有多个事件，但是不是对应多个整数，而是多个事件按位与操作得到的一个整数,e.g., EPOLLIN & EPOLLOUT，所以
+// numEvents就是epoll返回的文件描述符的数量
 void EPollPoller::fillActiveChannels(int numEvents, ChannelList *activeChannels) const
 {
     for (int i = 0; i < numEvents; ++i)

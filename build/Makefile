@@ -259,6 +259,51 @@ EventLoopThreadPool.s:
 .PHONY : EventLoopThreadPool.s
 
 # target to build an object file
+HttpContext.o:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/HttpContext.o
+.PHONY : HttpContext.o
+
+# target to preprocess a source file
+HttpContext.i:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/HttpContext.i
+.PHONY : HttpContext.i
+
+# target to generate assembly for a file
+HttpContext.s:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/HttpContext.s
+.PHONY : HttpContext.s
+
+# target to build an object file
+HttpResponse.o:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/HttpResponse.o
+.PHONY : HttpResponse.o
+
+# target to preprocess a source file
+HttpResponse.i:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/HttpResponse.i
+.PHONY : HttpResponse.i
+
+# target to generate assembly for a file
+HttpResponse.s:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/HttpResponse.s
+.PHONY : HttpResponse.s
+
+# target to build an object file
+HttpServer.o:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/HttpServer.o
+.PHONY : HttpServer.o
+
+# target to preprocess a source file
+HttpServer.i:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/HttpServer.i
+.PHONY : HttpServer.i
+
+# target to generate assembly for a file
+HttpServer.s:
+	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/HttpServer.s
+.PHONY : HttpServer.s
+
+# target to build an object file
 InetAddress.o:
 	$(MAKE) -f CMakeFiles/mymuduo.dir/build.make CMakeFiles/mymuduo.dir/InetAddress.o
 .PHONY : InetAddress.o
@@ -414,6 +459,15 @@ help:
 	@echo "... EventLoopThreadPool.o"
 	@echo "... EventLoopThreadPool.i"
 	@echo "... EventLoopThreadPool.s"
+	@echo "... HttpContext.o"
+	@echo "... HttpContext.i"
+	@echo "... HttpContext.s"
+	@echo "... HttpResponse.o"
+	@echo "... HttpResponse.i"
+	@echo "... HttpResponse.s"
+	@echo "... HttpServer.o"
+	@echo "... HttpServer.i"
+	@echo "... HttpServer.s"
 	@echo "... InetAddress.o"
 	@echo "... InetAddress.i"
 	@echo "... InetAddress.s"

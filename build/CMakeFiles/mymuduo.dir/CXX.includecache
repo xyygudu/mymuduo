@@ -51,6 +51,8 @@ algorithm
 -
 stddef.h
 -
+assert.h
+-
 
 /home/acer/projects/c++/mymuduo/Callbacks.h
 memory
@@ -198,6 +200,60 @@ memory
 noncopyable.h
 /home/acer/projects/c++/mymuduo/noncopyable.h
 
+/home/acer/projects/c++/mymuduo/HttpContext.cc
+Buffer.h
+/home/acer/projects/c++/mymuduo/Buffer.h
+HttpContext.h
+/home/acer/projects/c++/mymuduo/HttpContext.h
+
+/home/acer/projects/c++/mymuduo/HttpContext.h
+copyable.h
+/home/acer/projects/c++/mymuduo/copyable.h
+HttpRequest.h
+/home/acer/projects/c++/mymuduo/HttpRequest.h
+
+/home/acer/projects/c++/mymuduo/HttpRequest.h
+map
+-
+assert.h
+-
+stdio.h
+-
+copyable.h
+/home/acer/projects/c++/mymuduo/copyable.h
+Timestamp.h
+/home/acer/projects/c++/mymuduo/Timestamp.h
+
+/home/acer/projects/c++/mymuduo/HttpResponse.cc
+stdio.h
+-
+HttpResponse.h
+/home/acer/projects/c++/mymuduo/HttpResponse.h
+Buffer.h
+/home/acer/projects/c++/mymuduo/Buffer.h
+
+/home/acer/projects/c++/mymuduo/HttpResponse.h
+map
+-
+copyable.h
+/home/acer/projects/c++/mymuduo/copyable.h
+
+/home/acer/projects/c++/mymuduo/HttpServer.cc
+HttpServer.h
+/home/acer/projects/c++/mymuduo/HttpServer.h
+Logger.h
+/home/acer/projects/c++/mymuduo/Logger.h
+HttpContext.h
+/home/acer/projects/c++/mymuduo/HttpContext.h
+HttpRequest.h
+/home/acer/projects/c++/mymuduo/HttpRequest.h
+HttpResponse.h
+/home/acer/projects/c++/mymuduo/HttpResponse.h
+
+/home/acer/projects/c++/mymuduo/HttpServer.h
+TcpServer.h
+/home/acer/projects/c++/mymuduo/TcpServer.h
+
 /home/acer/projects/c++/mymuduo/InetAddress.cc
 strings.h
 -
@@ -311,6 +367,8 @@ Buffer.h
 /home/acer/projects/c++/mymuduo/Buffer.h
 Timestamp.h
 /home/acer/projects/c++/mymuduo/Timestamp.h
+HttpContext.h
+/home/acer/projects/c++/mymuduo/HttpContext.h
 
 /home/acer/projects/c++/mymuduo/TcpServer.cc
 functional
@@ -381,14 +439,14 @@ time.h
 -
 Timestamp.h
 /home/acer/projects/c++/mymuduo/Timestamp.h
-iostream
--
 
 /home/acer/projects/c++/mymuduo/Timestamp.h
 iostream
 -
 string
 -
+
+/home/acer/projects/c++/mymuduo/copyable.h
 
 /home/acer/projects/c++/mymuduo/noncopyable.h
 

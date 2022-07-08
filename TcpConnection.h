@@ -9,10 +9,15 @@
 #include "Callbacks.h"
 #include "Buffer.h"
 #include "Timestamp.h"
+#include "HttpContext.h"
 
 class Channel;
 class EventLoop;
 class Socket;
+
+// 为了将Http解析请求的类HttpContext的生命周期和TcpConnection绑定，
+// 所以才引入HttpContext，muduo用的时boost::any，但是c++11没有，所以这里就做个特例
+// class HttpContext;      
 
 
 /**暂时看不懂
@@ -55,8 +60,15 @@ public:
 
     // 发送数据
     void send(const std::string &buf);
+    void send(Buffer* buf);     // HttpServer用到这个函数，其实都可以稍改代码写上面的send就行
     // 关闭连接
     void shutdown();
+    /*************HttpServer 用到****************/
+    // muduo使用的是boost::any类型，因为保存上下文毕竟不只有HttpContext，
+    // 有可能还有文件上下文,但是这没考虑那么多，只为实现http
+    void setContext(const HttpContext& context) { context_ = context; }
+    const HttpContext& getContext() const { return context_; }
+    HttpContext *getMutableContext() { return &context_; }
 
     // 设置回调
     void setConnectionCallback(const ConnectionCallback &cb)
@@ -115,5 +127,8 @@ private:
     // 数据缓冲区
     Buffer inputBuffer_;                            // 接收数据的缓冲区
     Buffer outputBuffer_;                           // 发送数据的缓冲区 用户send向outputBuffer_发
+
+    /*************HttpServer 用到****************/
+    HttpContext context_;  // muduo使用的是boost::any类型，因为保存上下文毕竟不只有HttpContext，有可能还有文件上下文,但是这没考虑那么多，只为实现http
 };
 

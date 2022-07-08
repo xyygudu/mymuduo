@@ -29,7 +29,7 @@ EventLoop *EventLoopThread::startLoop()
     EventLoop *loop = nullptr;
     {
         std::unique_lock<std::mutex> lock(mutex_);
-        while (loop_ == nullptr)
+        while (loop_ == nullptr)    // wait the thread to create a EventLoop object and assign it to loop_ (the process can be find in function threadFunc)
         {               // https://segmentfault.com/a/1190000006679917
             cond_.wait(lock);
         }
@@ -44,7 +44,7 @@ EventLoop *EventLoopThread::startLoop()
 void EventLoopThread::threadFunc()
 {
     EventLoop loop;     // 创建一个独立的EventLoop对象 和上面的线程是一一对应的 级one loop per thread
-    if (callback_)
+    if (callback_)      // thread init callback function
     {
         callback_(&loop);
     }

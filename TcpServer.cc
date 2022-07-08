@@ -72,7 +72,7 @@ void TcpServer::start()
 // 有一个新用户连接，acceptor会执行这个回调操作，负责将mainLoop接收到的请求连接(acceptChannel_会有读事件发生)通过回调轮询分发给subLoop去处理
 void TcpServer::newConnection(int sockfd, const InetAddress &peerAddr)
 {
-    //参数int sockfd是新连接的fd，即connfd
+    // 参数int sockfd是新连接的fd，即connfd,
     // 根据轮询算法选择一个subloop，唤醒subloop，把当前的connfd封装成channel分发给subloop
     // 这个newConnection在baseLoop里面运行（mainLoop mainReactor都是以一个东西），baseLoop
     // 选择一个ioLoop(subreactor subloop都是一个东西)，把这个socketfd打包成channel交给这个ioLoop
@@ -84,7 +84,7 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peerAddr)
     EventLoop *ioLoop = threadPool_->getNextLoop();
 
     char buf[64] = {0};
-    snprintf(buf, sizeof buf, "-%s#%d", ipPort_.c_str(), nextConnId_);
+    snprintf(buf, sizeof(buf), "-%s#%d", ipPort_.c_str(), nextConnId_);
     ++nextConnId_;  // 这里没有设置为原子类是因为其只在mainloop中执行 不涉及线程安全问题
     std::string connName = name_ + buf;
     LOG_INFO("TcpServer::newConnection [%s] - new connection [%s] from %s\n",
@@ -97,7 +97,7 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peerAddr)
     // getsockname函数用于获取与某个套接字关联的本地协议地址，然后放到local里面
     if(::getsockname(sockfd, (sockaddr *)&local, &addrlen) < 0)
     {
-        LOG_ERROR("sockets::getLocalAddr");
+        LOG_ERROR("sockets::getLocalAddr\n");
     }
 
     InetAddress localAddr(local);

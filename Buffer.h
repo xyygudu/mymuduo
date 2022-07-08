@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <stddef.h>
+#include <assert.h>
 
 // 网络库底层的缓冲区类型定义
 /*
@@ -45,6 +46,21 @@ public:
     // 返回缓冲区中可读数据的起始地址
     const char *peek() const { return begin() + readerIndex_; }
 
+    // 查找buffer中是否有"\r\n", 解析http请求行用到
+    const char* findCRLF() const
+    {
+        const char* crlf = std::search(peek(), beginWrite(), kCRLF, kCRLF+2);
+        return crlf == beginWrite() ? NULL : crlf;
+    }
+
+    // 一直取到end位置. 在解析请求行的时候从buffer中读取一行后要移动指针便于读取下一行
+    void retrieveUntil(const char* end)
+    {
+        assert(peek() <= end);
+        assert(end <= beginWrite());
+        retrieve(end - peek());
+    }
+    
     // 从可读区域中取出数据
     void retrieve(size_t len)           
     {
@@ -145,6 +161,8 @@ private:
     std::vector<char> buffer_;
     size_t readerIndex_;
     size_t writerIndex_;
+
+    static const char kCRLF[];  // 存储"\r\n"
 };
 
 

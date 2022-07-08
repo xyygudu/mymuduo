@@ -24,6 +24,7 @@
  writev叫聚集写，把内存中分散的若干缓冲区写到文件的连续区域中
  */
 
+const char Buffer::kCRLF[] = "\r\n";
 
 ssize_t Buffer::readFd(int fd, int *saveErrno)
 {

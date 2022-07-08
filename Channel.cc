@@ -38,6 +38,7 @@ void Channel::tie(const std::shared_ptr<void> &obj)
     // 因为channel上的事件执行回调绑定的是TcpConnection的成员函数（在TcpConnection的构造函数中绑定的）
     tie_ = obj;      
     tied_ = true;
+    
 }
 
 void Channel::update()
@@ -68,6 +69,10 @@ void Channel::handleEvent(Timestamp receiveTime)
             handleEventWithGuard(receiveTime);
         }
     }
+    else
+    {
+        handleEventWithGuard(receiveTime);
+    }
 }
 
 // 根据poller通知的channel发生的具体事件类型，由channel负责调用具体的回调操作。
@@ -96,7 +101,7 @@ void Channel::handleEventWithGuard(Timestamp receiveTime)
     {
         if (readCallback_)
         {
-            readCallback_(receiveTime);
+            readCallback_(receiveTime);  // 最终执行的是 TcpConnection::handleRead()
         }
     }
     // 写

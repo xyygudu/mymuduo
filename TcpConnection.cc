@@ -67,6 +67,21 @@ void TcpConnection::send(const std::string &buf)
     }
 }
 
+void TcpConnection::send(Buffer* buf)
+{
+    if (state_ == kConnected)
+    {
+        if (loop_->isInLoopThread())
+        {
+            sendInLoop(buf->peek(), buf->readableBytes());
+            buf->retrieveAll();
+        }
+        else
+        {
+            loop_->runInLoop(std::bind(&TcpConnection::sendInLoop, this, buf->peek(), buf->readableBytes()));
+        }
+    }
+}
 
 /**
  * 发送数据 应用写的快 而内核发送数据慢 需要把待发送数据写入缓冲区，而且设置了水位回调
@@ -179,7 +194,7 @@ void TcpConnection::connectEstablished()
     channel_->tie(shared_from_this());          // 将channel和TcpConnection绑定
 
     channel_->enableReading();                  // 向poller注册channel的EPOLLIN读事件
-    connectionCallback_(shared_from_this());    // 新连接建立 执行回调
+    connectionCallback_(shared_from_this());    // 新连接建立 执行回调 the user defined onConnection function
 }
 
 // 连接销毁
