@@ -19,7 +19,7 @@ void HttpResponse::appendToBuffer(Buffer * output) const{
     snprintf(buf, sizeof(buf), "HTTP/1/1 %d ", statusCode_);    
     // muduo重载了append函数，我这里没重载如果出错请检查这里
     output->append(buf, sizeof(buf));
-    output->append(statusMessage_.data(), statusMessage_.size());
+    output->append(statusMessage_.c_str(), statusMessage_.size());
     output->append("\r\n", sizeof("\r\n"));
 
     if (closeConnection_)
@@ -35,12 +35,12 @@ void HttpResponse::appendToBuffer(Buffer * output) const{
 
     for (const auto& header : headers_)
     {
-        output->append(header.first.data(), header.first.size());
+        output->append(header.first.c_str(), header.first.size());
         output->append(": ", sizeof(": "));
-        output->append(header.second.data(), header.second.size());
+        output->append(header.second.c_str(), header.second.size());
         output->append("\r\n", sizeof("\r\n"));
     }
 
     output->append("\r\n", sizeof("\r\n"));
-    output->append(body_.data(), body_.size());
+    output->append(body_.c_str(), body_.size());
 }

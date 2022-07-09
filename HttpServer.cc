@@ -28,7 +28,7 @@ HttpServer::HttpServer(EventLoop *loop,
 
 void HttpServer::start()
 {
-    LOG_INFO("HttpServer[%s] start listening on %s", server_.name().data(), server_.ipPort().data());
+    LOG_INFO("HttpServer[%s] start listening on %s", server_.name().c_str(), server_.ipPort().c_str());
     server_.start();
 }
 
@@ -64,7 +64,7 @@ void HttpServer::onRequest(const TcpConnectionPtr& conn, const HttpRequest& req)
     bool close = connection == "close" ||
         (req.getVersion() == HttpRequest::kHttp10 && connection != "Keep-Alive");
     HttpResponse response(close);
-    httpCallback_(req, &response);      // httpCallback_由用户给定，便于用户可以自定义当请求到来时，给应该给客户端返回什么信息
+    httpCallback_(req, &response);      // httpCallback_由用户给定，便于用户可以自定义当请求到来时，应该给客户端返回什么信息
     Buffer buf;
     response.appendToBuffer(&buf);
 

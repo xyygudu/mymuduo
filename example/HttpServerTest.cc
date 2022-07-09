@@ -27,10 +27,10 @@ void onRequest(const HttpRequest& req, HttpResponse* resp)
     {
         resp->setStatusCode(HttpResponse::k200Ok);
         resp->setStatusMessage("OK");
-        resp->setContentType("text/html");
-        resp->addHeader("Server", "Muduo");
+        resp->setContentType("text/html;charset=utf-8");
+        resp->addHeader("Server", "mymuduo");
         string now = Timestamp::now().toString();
-        resp->setBody("<html><head><title>This is title</title></head>"
+        resp->setBody("<html><head><title>This is title</title><meta charset=\"UTF-8\"></head>"
             "<body><h1>Hello</h1>Now is " + now +
             "</body></html>");
     }
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
         numThreads = atoi(argv[1]);
     }
     EventLoop loop;
-    HttpServer server(&loop, InetAddress(8000), "dummy");
+    HttpServer server(&loop, InetAddress(8003), "dummy");
     server.setHttpCallback(onRequest);
     server.setThreadNum(numThreads);
     server.start();

@@ -67,18 +67,28 @@ void TcpConnection::send(const std::string &buf)
     }
 }
 
-void TcpConnection::send(Buffer* buf)
+void TcpConnection::send(Buffer* buf)   
 {
     if (state_ == kConnected)
     {
         if (loop_->isInLoopThread())
         {
+            // std::cout << "TcpConnection::send(Buffer* buf)---inLoopthread-------" << endl;
             sendInLoop(buf->peek(), buf->readableBytes());
             buf->retrieveAll();
+            // std::string msg = buf->retrieveAllAsString();
+            // sendInLoop(msg.c_str(), msg.size());
         }
         else
-        {
-            loop_->runInLoop(std::bind(&TcpConnection::sendInLoop, this, buf->peek(), buf->readableBytes()));
+        {   // 这个函数和muduo源码有一定差别，还不太确定是否正确,即：不知道这样是否会影响buffer的readerIndex_, 应该是不影响的
+            // std::cout << "TcpConnection::send(Buffer* buf)-----not in loopthread-----" << endl;
+            // 方式一和方式二应该是等价的
+            // 方式一:
+            std::string msg = buf->retrieveAllAsString();
+            loop_->runInLoop(std::bind(&TcpConnection::sendInLoop, this, msg.c_str(), msg.size()));
+            // 方式二:
+            // loop_->runInLoop(std::bind(&TcpConnection::sendInLoop, this, buf->peek(), buf->readableBytes()));
+            // buf->retrieveAll();
         }
     }
 }
@@ -103,6 +113,7 @@ void TcpConnection::sendInLoop(const void *data, size_t len)
     if (!channel_->isWriting() && outputBuffer_.readableBytes() == 0)
     {
         nwrote = ::write(channel_->fd(), data, len);
+        // LOG_INFO("-----TcpConnection::sendInLoop write %ld-----", nwrote);
         if (nwrote >= 0)
         {
             remaining = len - nwrote;

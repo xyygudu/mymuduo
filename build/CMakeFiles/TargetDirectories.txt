@@ -1,3 +1,0 @@
-/home/acer/projects/c++/mymuduo/build/CMakeFiles/rebuild_cache.dir
-/home/acer/projects/c++/mymuduo/build/CMakeFiles/edit_cache.dir
-/home/acer/projects/c++/mymuduo/build/CMakeFiles/mymuduo.dir
