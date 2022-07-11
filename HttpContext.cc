@@ -1,5 +1,6 @@
 #include "Buffer.h"
 #include "HttpContext.h"
+#include "Logger.h"
 
 bool HttpContext::processRequestLine(const char* begin, const char* end)
 {
@@ -93,6 +94,7 @@ bool HttpContext::parseRequest(Buffer *buf, Timestamp receiveTime)
                 }
                 else
                 {
+                    // 头部结束后的空行
                     state_ = kGotAll;
                     hasMore = false;
                 }

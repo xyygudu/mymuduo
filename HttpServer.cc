@@ -23,6 +23,7 @@ HttpServer::HttpServer(EventLoop *loop,
 {
     server_.setConnectionCallback(std::bind(&HttpServer::onConnection, this, _1));
     server_.setMessageCallback(std::bind(&HttpServer::onMessage, this, _1, _2, _3));
+    // server_.setWriteCompleteCallback(std::bind(&HttpServer::onWriteCompleted, this, _1));
 }
 
 
@@ -67,10 +68,14 @@ void HttpServer::onRequest(const TcpConnectionPtr& conn, const HttpRequest& req)
     httpCallback_(req, &response);      // httpCallback_由用户给定，便于用户可以自定义当请求到来时，应该给客户端返回什么信息
     Buffer buf;
     response.appendToBuffer(&buf);
-
     conn->send(&buf);
     if (response.closeConnection())
     {
         conn->shutdown();
     }
 }
+
+// void HttpServer::onWriteCompleted(const TcpConnectionPtr &conn)
+// {
+//     cout << "Http服务器已经写完" << endl;
+// }

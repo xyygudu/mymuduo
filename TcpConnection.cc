@@ -58,7 +58,7 @@ void TcpConnection::send(const std::string &buf)
     {
         if (loop_->isInLoopThread())    // 通过tid判断是否在当前线程运行，如果单个reactor的情况 用户调用conn->send时 loop_即为当前线程
         {
-            sendInLoop(buf.c_str(), buf.size());
+            sendInLoop(buf.data(), buf.size());
         }
         else
         {
@@ -77,7 +77,7 @@ void TcpConnection::send(Buffer* buf)
             sendInLoop(buf->peek(), buf->readableBytes());
             buf->retrieveAll();
             // std::string msg = buf->retrieveAllAsString();
-            // sendInLoop(msg.c_str(), msg.size());
+            // sendInLoop(msg.data(), msg.size());
         }
         else
         {   // 这个函数和muduo源码有一定差别，还不太确定是否正确,即：不知道这样是否会影响buffer的readerIndex_, 应该是不影响的
@@ -85,7 +85,7 @@ void TcpConnection::send(Buffer* buf)
             // 方式一和方式二应该是等价的
             // 方式一:
             std::string msg = buf->retrieveAllAsString();
-            loop_->runInLoop(std::bind(&TcpConnection::sendInLoop, this, msg.c_str(), msg.size()));
+            loop_->runInLoop(std::bind(&TcpConnection::sendInLoop, this, msg.data(), msg.size()));
             // 方式二:
             // loop_->runInLoop(std::bind(&TcpConnection::sendInLoop, this, buf->peek(), buf->readableBytes()));
             // buf->retrieveAll();
@@ -105,6 +105,7 @@ void TcpConnection::sendInLoop(const void *data, size_t len)
     if (state_ == kDisconnected)//  之前调用过该connection的shutdown 不能再进行发送了（不明白为什么kDisconnected表示调用过shutdown）
     {
         LOG_ERROR("disconnected, give up writing");
+        return;
     }
 
     // 表示channel_第一次开始写数据或者缓冲区没有待发送数据，isWriting用于判断fdchannel是否注册了可写事件
@@ -113,7 +114,6 @@ void TcpConnection::sendInLoop(const void *data, size_t len)
     if (!channel_->isWriting() && outputBuffer_.readableBytes() == 0)
     {
         nwrote = ::write(channel_->fd(), data, len);
-        // LOG_INFO("-----TcpConnection::sendInLoop write %ld-----", nwrote);
         if (nwrote >= 0)
         {
             remaining = len - nwrote;
@@ -229,7 +229,10 @@ void TcpConnection::handleRead(Timestamp receiveTime)
         // 已建立连接的用户有可读事件发生了 调用用户传入的回调操作onMessage shared_from_this就是获取了TcpConnection的智能指针
         messageCallback_(shared_from_this(), &inputBuffer_, receiveTime);
     }
-    else if (n == 0) // 客户端断开(为什么读到0字节表示客户端断开？？？？？？？？？)
+    // 客户端断开(为什么读到0字节表示客户端断开？？？？？？？？？)
+    // 因为默认客户端没有数据发送了就应该断开，因为muduo关闭连接的过程是：先关闭写端，便于接受还在路上的数据，接受完毕之后，
+    // 如果没有数据可读，说明对方没有发送数据了，即客户端关闭连接了，所以服务器也要关闭
+    else if (n == 0) 
     {
         handleClose();
     }

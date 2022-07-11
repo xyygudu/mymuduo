@@ -18,6 +18,7 @@ public:
 
     EventLoop *getLoop() const { return server_.getLoop(); }
 
+    // 实际就是调用的用户自定义的onRequest
     void setHttpCallback(const HttpCallback &cb)
     {
         httpCallback_ = cb;
@@ -34,8 +35,9 @@ private:
     void onConnection(const TcpConnectionPtr &connn);
     void onMessage(const TcpConnectionPtr &conn, Buffer *buf, Timestamp receiveTime);
     void onRequest(const TcpConnectionPtr &, const HttpRequest &);
+    // void onWriteCompleted(const TcpConnectionPtr &);
 
     TcpServer server_;
-    HttpCallback httpCallback_;
+    HttpCallback httpCallback_;   // 请求到来时候执行的回调函数
 };
 

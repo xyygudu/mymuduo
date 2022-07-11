@@ -129,6 +129,6 @@ private:
     Buffer outputBuffer_;                           // 发送数据的缓冲区 用户send向outputBuffer_发
 
     /*************HttpServer 用到****************/
-    HttpContext context_;  // muduo使用的是boost::any类型，因为保存上下文毕竟不只有HttpContext，有可能还有文件上下文,但是这没考虑那么多，只为实现http
+    HttpContext context_;  // muduo使用的是boost::any类型(c++14)，因为保存上下文毕竟不只有HttpContext，有可能还有文件上下文,但是这没考虑那么多，只为实现http
 };
 

@@ -68,14 +68,10 @@ public:
         const char *result = "UNKNOWN";
         switch(method_)
         {
-            case kGet:
-                result = "GET"; break;
-            case kPost:
-                result = "POST"; break;
-            case kHead:
-                result = "HEAD"; break;
-            case KPut:
-                result = "PUT"; break;
+            case kGet: result = "GET"; break;
+            case kPost: result = "POST"; break;
+            case kHead: result = "HEAD"; break;
+            case KPut: result = "PUT"; break;
             case kDelete: result = "DELETE"; break;
             default: break;
         }
@@ -89,6 +85,7 @@ public:
 
     const string & path() const { return path_; }
 
+    // “？”后面携带的信息
     void setQuery(const char* start, const char* end)
     {
         query_.assign(start, end);
