@@ -75,7 +75,7 @@ void Channel::handleEvent(Timestamp receiveTime)
 // 根据相应事件执行回调操作
 void Channel::handleEventWithGuard(Timestamp receiveTime)
 {
-    // 对方关闭写端后，读端就会触发EPOLLHUP，此时需要关闭连接
+    // 对方关闭连接会触发EPOLLHUP，此时需要关闭连接
     if ((revents_ & EPOLLHUP) && !(revents_ & EPOLLIN))
     {
         if (closeCallback_) closeCallback_();
