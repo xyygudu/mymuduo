@@ -59,7 +59,7 @@ ssize_t Buffer::readFd(int fd, int *saveErrno)
     else                                            // Buffer存不下，对Buffer扩容，然后把extrabuf中暂存的数据拷贝（追加）到Buffer
     {
         writerIndex_ = buffer_.size();
-        append(extrabuf, n - writable);             // 对buffer_扩容 并将extrabuf存储的另一部分数据追加至buffer_
+        append(extrabuf, n - writable);             // 根据情况对buffer_扩容 并将extrabuf存储的另一部分数据追加至buffer_
     }
     return n;
 
