@@ -50,7 +50,7 @@ Timestamp EPollPoller::poll(int timeoutMs, ChannelList *activeChannels)
     // 超时
     else if (numEvents == 0)
     {
-        LOG_DEBUG << "timeout!";
+        LOG_TRACE << "timeout!";
     }
     // 出错
     else

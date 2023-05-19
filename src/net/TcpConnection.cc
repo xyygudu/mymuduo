@@ -13,8 +13,9 @@
 #include <string.h>
 #include <netinet/tcp.h>
 
+
 // 提供一个默认的ConnectionCallback，如果自定义的服务器（比如EchoServer）没有注册
-// ConnectionCallback的话，就使用这个默认的
+// ConnectionCallback的话，就使用这个默认的(声明在Callback.h)
 void defaultConnectionCallback(const TcpConnectionPtr& conn)
 {
     LOG_TRACE << conn->localAddress().toIpPort() << " -> "
@@ -23,10 +24,10 @@ void defaultConnectionCallback(const TcpConnectionPtr& conn)
 }
 
 // 提供一个默认的MessageCallback，如果自定义的服务器（比如EchoServer）没有注册
-// MessageCallback的话，就使用这个默认的
+// MessageCallback的话，就使用这个默认的(声明在Callback.h)
 void defaultMessageCallback(const TcpConnectionPtr&, Buffer* buf, Timestamp)
 {
-    buf->retrieveAll();
+    LOG_TRACE << buf->retrieveAllAsString();
 }
 
 static EventLoop* CheckLoopNotNull(EventLoop *loop)

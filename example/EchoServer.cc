@@ -1,5 +1,6 @@
 #include "TcpServer.h"
 #include "Logging.h"
+#include "LogFile.h"
 
 #include <string>
 
@@ -51,8 +52,22 @@ private:
     TcpServer server_;
 };
 
+
+std::unique_ptr<LogFile> g_logFile;
+// msg就是LogStream::buffer_中存储的一条日志信息，现在需要把这条日志信息apend到FileUtil的buffer_中
+void dummyOutput(const char* msg, int len)
+{	
+	if (g_logFile) {
+    	g_logFile->append(msg, len);
+    }
+}
+
 int main() {
-    // Logger::setLogLevel(Logger::DEBUG);
+    /***********同步日志到文件************/
+    // g_logFile.reset(new LogFile("echoserver_log_file", 500*1000*1000, true));
+    // Logger::setOutput(dummyOutput);		// 改变Logger的输出位置
+    /************************************/
+    // Logger::setLogLevel(Logger::DEBUG); // 设置日志等级
     EventLoop loop;
     InetAddress addr(8002);
     EchoServer server(&loop, addr, "EchoServer");

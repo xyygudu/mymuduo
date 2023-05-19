@@ -1,4 +1,5 @@
-PROJECT_PATH=/home/acer/projects/cplusplus/mymuduo
+# 更改成自己项目的根目录
+PROJECT_PATH=/home/acer/projects/mymuduo
 HEADER_PATH=-I ${PROJECT_PATH}/src/base \
 			-I ${PROJECT_PATH}/src/net \
 			-I ${PROJECT_PATH}/src/logger \
