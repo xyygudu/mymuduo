@@ -145,15 +145,15 @@ private:
             // |    prependable bytes    |    readable bytes    |    writable bytes   |
             // | kCheapPrepend |  p-kC   |      (CONTENT)       |                     |
             // +-------------------------+----------------------+---------------------+
-            // |                         |                      |                     |
-            // 0        <=           readerIndex     <=     writerIndex             size
+            // |               |         |                      |                     |
+            // 0        <=     8     readerIndex     <=     writerIndex             size
             // 调整后：
-            // +--------------------+--------------------+----------------------------+
-            // | prependable bytes  |  readable bytes    |     新的writable bytes      |
-            // | = kCheapPrepend    |    (CONTENT)       | = p-kC+之前的writable bytes |
-            // +--------------------+--------------------+----------------------------+
-            // |                    |                    |                            |
-            // 0        <=      readerIndex     <=  writerIndex                     size
+            // +---------------+--------------------+---------------------------------+
+            // | prependable   |  readable bytes    |     新的writable bytes          |
+            // | kCheapPrepend |    (CONTENT)       | = p-kC+之前的writable bytes     |
+            // +---------------+--------------------+---------------------------------+
+            // |               |                    |                                 |
+            // 0    <=    readerIndex    <=    writerIndex                          size
             size_t readable = readableBytes();  
             std::copy(begin() + readerIndex_,
                       begin() + writerIndex_,       // 把这一部分数据拷贝到begin+kCheapPrepend起始处
