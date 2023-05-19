@@ -13,6 +13,22 @@
 #include <string.h>
 #include <netinet/tcp.h>
 
+// 提供一个默认的ConnectionCallback，如果自定义的服务器（比如EchoServer）没有注册
+// ConnectionCallback的话，就使用这个默认的
+void muduo::net::defaultConnectionCallback(const TcpConnectionPtr& conn)
+{
+    LOG_TRACE << conn->localAddress().toIpPort() << " -> "
+            << conn->peerAddress().toIpPort() << " is "
+            << (conn->connected() ? "UP" : "DOWN");
+}
+
+// 提供一个默认的MessageCallback，如果自定义的服务器（比如EchoServer）没有注册
+// MessageCallback的话，就使用这个默认的
+void muduo::net::defaultMessageCallback(const TcpConnectionPtr&, Buffer* buf, Timestamp)
+{
+    buf->retrieveAll();
+}
+
 static EventLoop* CheckLoopNotNull(EventLoop *loop)
 {
     // 如果传入EventLoop没有指向有意义的地址则出错
