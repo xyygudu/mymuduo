@@ -27,7 +27,7 @@ void defaultConnectionCallback(const TcpConnectionPtr& conn)
 // MessageCallback的话，就使用这个默认的(声明在Callback.h)
 void defaultMessageCallback(const TcpConnectionPtr&, Buffer* buf, Timestamp)
 {
-    LOG_TRACE << buf->retrieveAllAsString();
+    LOG_TRACE << "receive " << buf->readableBytes() << " bytes: " << buf->retrieveAllAsString();
 }
 
 static EventLoop* CheckLoopNotNull(EventLoop *loop)
