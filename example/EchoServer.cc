@@ -62,12 +62,13 @@ void dummyOutput(const char* msg, int len)
     }
 }
 
-int main() {
+int main() 
+{
     /***********同步日志到文件************/
     // g_logFile.reset(new LogFile("echoserver_log_file", 500*1000*1000, true));
     // Logger::setOutput(dummyOutput);		// 改变Logger的输出位置
     /************************************/
-    // Logger::setLogLevel(Logger::DEBUG); // 设置日志等级
+    // Logger::setLogLevel(Logger::TRACE); // 设置日志等级
     EventLoop loop;
     InetAddress addr(8002);
     EchoServer server(&loop, addr, "EchoServer");

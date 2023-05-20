@@ -1,0 +1,30 @@
+2023/05/20 14:30:190386 DEBUG EPollPoller create a new epollfd, fd = 4 - EPollPoller.cc:24
+2023/05/20 14:30:190439 DEBUG createTimerfd create a timerfd, fd=5 - TimerQueue.cc:16
+2023/05/20 14:30:190513 DEBUG createEventfd create a new wakeupfd, fd = 6 - EventLoop.cc:24
+2023/05/20 14:30:190528 DEBUG EventLoop EventLoop created 0x7FFD3CAE7910, the threadId is 13026 - EventLoop.cc:38
+2023/05/20 14:30:209303 DEBUG Acceptor Acceptor create nonblocking socket, [fd = 7] - Acceptor.cc:29
+2023/05/20 14:30:209784 DEBUG EPollPoller create a new epollfd, fd = 9 - EPollPoller.cc:24
+2023/05/20 14:30:210005 DEBUG createTimerfd create a timerfd, fd=10 - TimerQueue.cc:16
+2023/05/20 14:30:210041 DEBUG createEventfd create a new wakeupfd, fd = 11 - EventLoop.cc:24
+2023/05/20 14:30:210048 DEBUG EventLoop EventLoop created 0x7FF57B0D09C0, the threadId is 13027 - EventLoop.cc:38
+2023/05/20 14:30:210094 INFO  EventLoop 0x7FF57B0D09C0 start looping - EventLoop.cc:68
+2023/05/20 14:30:210421 DEBUG EPollPoller create a new epollfd, fd = 12 - EPollPoller.cc:24
+2023/05/20 14:30:210511 DEBUG createTimerfd create a timerfd, fd=13 - TimerQueue.cc:16
+2023/05/20 14:30:210534 DEBUG createEventfd create a new wakeupfd, fd = 14 - EventLoop.cc:24
+2023/05/20 14:30:210539 DEBUG EventLoop EventLoop created 0x7FF57A8CF9C0, the threadId is 13028 - EventLoop.cc:38
+2023/05/20 14:30:210585 INFO  EventLoop 0x7FF57A8CF9C0 start looping - EventLoop.cc:68
+2023/05/20 14:30:210866 DEBUG EPollPoller create a new epollfd, fd = 15 - EPollPoller.cc:24
+2023/05/20 14:30:210884 DEBUG createTimerfd create a timerfd, fd=16 - TimerQueue.cc:16
+2023/05/20 14:30:211033 DEBUG createEventfd create a new wakeupfd, fd = 17 - EventLoop.cc:24
+2023/05/20 14:30:211043 DEBUG EventLoop EventLoop created 0x7FF57A0CE9C0, the threadId is 13029 - EventLoop.cc:38
+2023/05/20 14:30:211086 INFO  EventLoop 0x7FF57A0CE9C0 start looping - EventLoop.cc:68
+2023/05/20 14:30:211604 INFO  EventLoop 0x7FFD3CAE7910 start looping - EventLoop.cc:68
+2023/05/20 14:30:214791 TRACE poll timeout! - EPollPoller.cc:53
+2023/05/20 14:30:214796 TRACE poll timeout! - EPollPoller.cc:53
+2023/05/20 14:30:220711 TRACE poll timeout! - EPollPoller.cc:53
+2023/05/20 14:30:221744 TRACE poll timeout! - EPollPoller.cc:53
+2023/05/20 14:30:225014 TRACE poll timeout! - EPollPoller.cc:53
+2023/05/20 14:30:225014 TRACE poll timeout! - EPollPoller.cc:53
+2023/05/20 14:30:225086 TRACE poll timeout! - EPollPoller.cc:53
+2023/05/20 14:30:231856 TRACE poll timeout! - EPollPoller.cc:53
+2023/05/20 14:30:227688 TRACE poll timeout! - EPollPoller.c
