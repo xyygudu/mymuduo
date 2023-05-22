@@ -42,6 +42,7 @@ public:
 
 private:
     using Buffer = FixedBuffer<kLargeBuffer>;    // 4M
+    // BufferVector存储独占指针的目的是：从BufferVector中弹出元素（Buffer）后会自动析构
     using BufferVector = std::vector<std::unique_ptr<Buffer>>;
     using BufferPtr = BufferVector::value_type;
 
