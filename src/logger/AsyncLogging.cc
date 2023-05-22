@@ -73,7 +73,7 @@ void AsyncLogging::threadFunc()
             std::unique_lock<std::mutex> lock(mutex_);
             if (buffers_.empty())
             {
-                // 等待三秒也会接触阻塞
+                // 等待三秒也会解除阻塞
                 cond_.wait_for(lock, std::chrono::seconds(3));
             }
 
