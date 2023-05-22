@@ -40,7 +40,7 @@ public:
     int events() const { return events_; }            // 返回感兴趣的事件
     void set_revents(int revt) { revents_ = revt; }  // 设置Poller返回的发生事件
 
-    // 设置fd相应的事件状态，update()其本质调用epoll_ctl
+    // 向epoll中注册、删除fd感兴趣的事件，update()其本质调用epoll_ctl
     void enableReading() { events_ |= kReadEvent; update(); }
     void disableReading() { events_ &= ~kReadEvent; update(); }
     void enableWriting() { events_ |= kWriteEvent; update(); }
@@ -92,7 +92,6 @@ private:
     std::weak_ptr<void> tie_;   // 弱指针指向TcpConnection(必要时升级为shared_ptr多一份引用计数，避免用户误删)
     bool tied_;                 // 标志此 Channel 是否被调用过 Channel::tie 方法
 
-    // 因为 channel 通道里面能够获知fd最终发生的具体的事件revents
     // 保存事件到来时的回调函数
     ReadEventCallback readCallback_;    // 绑定的是TcpConnection::handleRead(Timestamp receiveTime)
     EventCallback writeCallback_;       // 绑定的是TcpConnection::handleWrite()
