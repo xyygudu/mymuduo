@@ -47,6 +47,6 @@ private:
     EventLoop *ownerLoop_; 
     // 每个EPollPoller都有一个epollfd_，epollfd_是epoll_create在内核创建空间返回的fd
     int epollfd_;       
-    // 用于存放epoll_wait返回的所有发生的事件的文件描述符
+    // 用于存放epoll_wait返回的所有发生的事件
     EventList events_;  
 };
