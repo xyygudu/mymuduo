@@ -16,7 +16,7 @@ public:
     int fd() const { return sockfd_; }
     // 绑定sockfd
     void bindAddress(const InetAddress &localaddr);
-    // 使sockfd为可接受连接状态
+    // 监听
     void listen();
     // 接受连接
     int accept(InetAddress *peeraddr);
