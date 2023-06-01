@@ -214,7 +214,7 @@ void TcpConnection::connectDestroyed()
         channel_->disableAll(); // 把channel的所有感兴趣的事件从poller中删除掉
         connectionCallback_(shared_from_this());
     }
-    channel_->remove(); // 把channel从poller中删除掉
+    channel_->remove(); // 把channel从epoller中注销掉
 }
 
 void TcpConnection::handleRead(Timestamp receiveTime)
@@ -278,7 +278,7 @@ void TcpConnection::handleClose()
     setState(kDisconnected);
     channel_->disableAll();
     TcpConnectionPtr connPtr(shared_from_this());
-    connectionCallback_(connPtr); // 执行连接关闭的回调
+    connectionCallback_(connPtr); // 执行连接关闭的回调(用户自定的，而且和新连接到来时执行的是同一个回调)
     closeCallback_(connPtr);      // 执行关闭连接的回调 执行的是TcpServer::removeConnection回调方法   // must be the last line
 }
 
