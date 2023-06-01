@@ -41,7 +41,7 @@ void EventLoopThreadPool::start(const ThreadInitCallback &cb)
     }
 }
 
-// 如果工作在多线程中，mainLoop_会以轮询的方式选择一个subloop，以便后续将连接分发给这个subloop
+// 如果工作在多线程中，baseLoop_会以轮询的方式选择一个subloop，以便后续将连接分发给这个subloop
 EventLoop* EventLoopThreadPool::getNextLoop()
 {
     // 如果只设置一个线程 也就是只有一个mainReactor 无subReactor 
