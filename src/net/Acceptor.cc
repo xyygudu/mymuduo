@@ -67,7 +67,7 @@ void Acceptor::handleRead()
         // TcpServer::NewConnectionCallback_
         if (NewConnectionCallback_)
         {
-            // 轮询找到subLoop 唤醒并分发当前的新客户端的Channel
+            // 分发连接到subloop
             NewConnectionCallback_(connfd, peerAddr); 
         }
         else
