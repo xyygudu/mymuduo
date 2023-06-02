@@ -1,6 +1,8 @@
 # mymuduo
 c++11实现简易muduo网络库
 
+muduo讲解持续更新中...
+
 # 编译动态链接库
 
 根目录的build.sh和example的Makefile中把项目路径修改为自己当前项目的路径，然后执行如下代码生成动态链接库
@@ -27,4 +29,4 @@ make
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:你项目的目录/lib
 ```
 
-muduo讲解持续更新中...
+
