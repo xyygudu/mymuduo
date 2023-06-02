@@ -100,7 +100,7 @@ void EventLoop::quit()
 
 void EventLoop::runInLoop(Functor cb)
 {
-    // 如果当前调用runInLoop的线程正好是EventLoop的运行线程，则直接执行此函数,
+    // 如果当前调用runInLoop的线程正好是EventLoop绑定的线程，则直接执行此函数,
     // 否则就将回调函数通过queueInLoop()存储到pendingFunctors_中
     if (isInLoopThread())
     {
