@@ -65,7 +65,7 @@ private:
 
     std::atomic_bool looping_;                  // 是否正在事件循环中
     std::atomic_bool quit_;                     // 是否退出事件循环
-    std::atomic_bool callingPen nndingFunctors_;// 是否正在调用待执行的函数
+    std::atomic_bool callingPendingFunctors_;   // 是否正在调用待执行的函数
     const pid_t threadId_;                      // 当前loop所属线程的id
     Timestamp epollReturnTime_;                 // EPoller管理的fd有事件发生时的时间（也就是epoll_wait返回的时间）
     std::unique_ptr<EPollPoller> epoller_;      // 
