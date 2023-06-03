@@ -21,7 +21,7 @@ public:
 
     void setNewConnectionCallback(const NewConnectionCallback &cb)
     {
-        NewConnectionCallback_ = cb;
+        newConnectionCallback_ = cb;
     }
 
     bool listenning() const { return listenning_; }
@@ -33,7 +33,7 @@ private:
     EventLoop *loop_;       // Acceptor用的就是用户定义的mainLoop
     Socket acceptSocket_;
     Channel acceptChannel_;
-    NewConnectionCallback NewConnectionCallback_;
+    NewConnectionCallback newConnectionCallback_;
     bool listenning_;       // 是否正在监听的标志
     int idleFd_;            // 防止连接fd数量超过上线，用于占位的fd
 };

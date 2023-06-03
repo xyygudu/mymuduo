@@ -64,11 +64,10 @@ void Acceptor::handleRead()
     // 确实有新连接到来
     if (connfd >= 0)
     {
-        // TcpServer::NewConnectionCallback_
-        if (NewConnectionCallback_)
+        if (newConnectionCallback_)
         {
             // 分发连接到subloop
-            NewConnectionCallback_(connfd, peerAddr); 
+            newConnectionCallback_(connfd, peerAddr); 
         }
         else
         {
