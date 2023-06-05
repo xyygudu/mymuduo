@@ -2,7 +2,7 @@
 c++11实现简易muduo网络库
 
 # muduo讲解
-[Muduo概述](https://www.yuque.com/xyygudu/vc9euf/hvz14q33yrsydgp7)
+[Muduo概述](./muduo讲解/Muduo概述.md)
 
 [第一部分：从最基本例子开始](./muduo讲解/第一部分：从最基本例子开始.md)
 
