@@ -156,7 +156,7 @@ void Channel::handleEventWithGuard(Timestamp receiveTime)
 ## 怎么保证关闭连接时数据不会漏收？
 > （参考P137 6.4.1节和P192 7.2节)
 
-先说下muduo是怎么关闭连接的。muduo永远都是被动关闭连接：即等待对方关闭后（无论是只shutdowWrite还是close），自己才关闭连接，即使muduo主动关闭连接，都还是只关闭自己的写端，等对方关闭后，在关闭自己的读端。所以这种关闭连接的方式要求对方read到0字节后（read到0字节表示对方已经关闭了）<br />**当muduo主动关闭连接时，即调用**`**TcpConnection::shutdown**`**函数时，并不会直接close掉该连接对应的sockfd，而是只关闭sockfd的写端，这样sockfd不可继续发送数据，如果路上还有数据客户端没有收到，客户端就会一直read，直到客户端read到0字节时，表示路上的所有数据已经收完，即避免了数据漏收。**<br />但是此时muduo还处于半关闭状态（即服务器该连接的读端还没有关闭），此时要求客户端read到0字节时，主动关闭连接（只关闭写端或者直接close都行），这样，服务器上该连接对应的Channel就会触发EPOLLHUP事件，该事件会执行`TcpConnection::handleClose()`，它执行完后会析构该连接对应的TcpConnection对象，TcpConnection析构时，其成员Socket也会析构，Socket析构的时候会调用close来完全关闭该连接。<br />当muduo被动关闭连接时，即客户端先关闭连接，此时服务器就一直handlRead，直到read到0字节时，说明客户端发送的数据已经全部接收了，此时，服务器也会调用`TcpConnection::handleClose()`关闭连接。
+先说下muduo是怎么关闭连接的。muduo永远都是被动关闭连接：即等待对方关闭后（无论是只shutdowWrite还是close），自己才关闭连接，即使muduo主动关闭连接，都还是只关闭自己的写端，等对方关闭后，在关闭自己的读端。所以这种关闭连接的方式要求对方read到0字节后（read到0字节表示对方已经关闭了）主动关闭连接。<br />**当muduo主动关闭连接时，即调用**`**TcpConnection::shutdown**`**函数时，并不会直接close掉该连接对应的sockfd，而是只关闭sockfd的写端，这样sockfd不可继续发送数据，如果路上还有数据客户端没有收到，客户端就会一直read，直到客户端read到0字节时，表示路上的所有数据已经收完，即避免了数据漏收。**<br />但是此时muduo还处于半关闭状态（即服务器该连接的读端还没有关闭），此时要求客户端read到0字节时，主动关闭连接（只关闭写端或者直接close都行），这样，服务器上该连接对应的Channel就会触发EPOLLHUP事件，该事件会执行`TcpConnection::handleClose()`，它执行完后会析构该连接对应的TcpConnection对象，TcpConnection析构时，其成员Socket也会析构，Socket析构的时候会调用close来完全关闭该连接。<br />当muduo被动关闭连接时，即客户端先关闭连接，此时服务器就一直handlRead，直到read到0字节时，说明客户端发送的数据已经全部接收了，此时，服务器也会调用`TcpConnection::handleClose()`关闭连接。
 <a name="hVGGT"></a>
 ## 怎么保证数据关闭连接前数据发送完毕？
 > （参考P192 7.2节)
