@@ -49,7 +49,7 @@ Muduo基本是当前C++后端校招必修项目了，许多人都用C++11重构�
 > - 熟悉最基本的TCP网络通信编程流程和API，比如socket、bind、listen、accept、recv、send
 > - 知道epoll相关函数的用法，比如epoll_create，epoll_wait
 > - 了解Reactor事件处理模式
-> - 知道C++11常见新特性，如只能指针，function和bind等
+> - 知道C++11常见新特性，如智能指针，function和bind等
 
 <a name="ORzFu"></a>
 ## 相关链接
