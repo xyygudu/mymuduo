@@ -17,7 +17,7 @@ sudo ./build.sh
 
 # 测试
 ```
-cd examle
+cd example
 make
 ./EchoServer
 ```
