@@ -4,7 +4,7 @@
 
 ThreadPool::ThreadPool(const std::string& name)
     : mutex_()
-    , cond_(),
+    , cond_()
     , name_(name)
     , running_(false)
 {
@@ -26,7 +26,7 @@ void ThreadPool::start(int numThreads)
     {
         char id[32];
         snprintf(id, sizeof(id), "%d", i+1);
-        threads_.emplace_back(new Thread(std::bind(&ThreadPool::runInThread, this), name_+id));
+        threads_.emplace_back(std::make_unique<Thread>(std::bind(&ThreadPool::runInThread, this), name_+id));
         threads_[i]->start();
     }
     // 如果不创建线程则直接在本线程中执行回调
@@ -76,7 +76,7 @@ void ThreadPool::runInThread()
             Task task;
             {
                 std::unique_lock<std::mutex> lock(mutex_);
-                cond_.wait(lock, [](){ return !queue_.empty() && running_; });
+                cond_.wait(lock, [this](){ return !queue_.empty() && running_; });
                 if (!queue_.empty())
                 {
                     task = queue_.front();
