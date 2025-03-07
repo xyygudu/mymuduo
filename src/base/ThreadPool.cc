@@ -4,7 +4,7 @@
 
 ThreadPool::ThreadPool(const std::string& name)
     : mutex_()
-    , cond_(),
+    , cond_()
     , name_(name)
     , running_(false)
 {
@@ -76,7 +76,7 @@ void ThreadPool::runInThread()
             Task task;
             {
                 std::unique_lock<std::mutex> lock(mutex_);
-                cond_.wait(lock, [](){ return !queue_.empty() && running_; });
+                cond_.wait(lock, [this](){ return !queue_.empty() && running_; });
                 if (!queue_.empty())
                 {
                     task = queue_.front();

@@ -20,8 +20,7 @@ public:
     explicit ThreadPool(const std::string& name = std::string("ThreadPool"));
     ~ThreadPool();
 
-    void setThreadInitCallback(const ThreadFunction& cb) { threadInitCallback_ = cb; }
-    void setThreadSize(const int& num) { threadSize_ = num; }
+    void setThreadInitCallback(const Task& cb) { threadInitCallback_ = cb; }
     // 启动numThreads个线程
     void start(int numThreads);
     void stop();

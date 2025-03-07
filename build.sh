@@ -30,7 +30,7 @@ cd ..
 
 
 # 告诉系统libmymuduo.so的目录(记得更改为自己项目的根目录/lib)
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/acer/projects/cplusplus/mymuduo/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/acer/work_space/github/mymuduo/lib
 
 # # 把头文件拷贝到 /usr/include/mymuduo       .so库拷贝到 /usr/lib
 # if [ ! -d /usr/include/mymuduo ]; then
