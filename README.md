@@ -1,5 +1,7 @@
 # mymuduo
-c++11实现简易muduo网络库
+c++17实现简易muduo网络库
+
+由于用到了std::any，而std::any是在c++17才开始支持
 
 # muduo讲解
 
@@ -33,4 +35,8 @@ make
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:你项目的目录/lib
 ```
 
+# 效果
 
+EchoServer测试时间轮
+
+![时间轮打印连接](/images/timewheel.png)
