@@ -7,6 +7,7 @@
 #include "InetAddress.h"
 
 #include <atomic>
+#include <any>
 
 class Channel;
 class EventLoop;
@@ -36,6 +37,12 @@ public:
 
     // 关闭连接
     void shutdown();
+
+    void setContext(const std::any& context)
+    { context_ = context; }
+
+    const std::any& getContext() const
+    { return context_; }
 
     // 保存用户自定义的回调函数
     void setConnectionCallback(const ConnectionCallback &cb)
@@ -101,4 +108,6 @@ private:
 
     Buffer inputBuffer_;                            // 读取数据的缓冲区
     Buffer outputBuffer_;                           // 发送数据的缓冲区
+
+    std::any context_;                              // 用户自定义数据(这里主要用于存储时间轮的WeakEntryPtr)
 };

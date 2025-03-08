@@ -10,6 +10,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/src/net
     ${PROJECT_SOURCE_DIR}/src/logger
     ${PROJECT_SOURCE_DIR}/src/http
+    ${PROJECT_SOURCE_DIR}/src/utils
     )
 
 # 包含这些目录下的.cc文件
@@ -22,7 +23,7 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/src/http SRC_HTTP)
 # mymuduo最终编译成so动态库 设置动态库的路径 放置项目根目录的lib文件夹下面
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 # 设置编译选项
-set(CXX_FLAGS -g -Wall -std=c++11)
+set(CXX_FLAGS -g -Wall -std=c++17)
 
 # 生成动态库 mymuduo
 add_library(mymuduo SHARED  ${SRC_BASE} ${SRC_NET} ${SRC_LOG} ${SRC_HTTP})
