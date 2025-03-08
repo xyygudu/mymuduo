@@ -38,8 +38,10 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:你项目的目录/lib
 # 效果
 
 EchoServer测试时间轮
-https://github.com/xyygudu/mymuduo/blob/main/image/http.png
-![时间轮打印连接]](https://github.com/xyygudu/mymuduo/blob/main/image/timewheel.png)
+
+![时间轮打印连接](https://github.com/xyygudu/mymuduo/blob/main/image/timewheel.png)
+
 
 Http测试效果
-![http]](https://github.com/xyygudu/mymuduo/blob/main/image/http.png))
+
+![http](https://github.com/xyygudu/mymuduo/blob/main/image/http.png)
