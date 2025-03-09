@@ -35,7 +35,7 @@ make
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:你项目的目录/lib
 ```
 
-如果测试日志打印到文件中，则可以把EchoServer.cc的main函数中，g_logFile.reset(new LogFile("log", 500*1000*1000, true, 3, 1024));最后一个参数1024改为10或者更小，这样在vscode中打开这个文件才能看到日志实时写入了文件
+如果测试日志打印到文件中，则可以把EchoServer.cc的main函数中，·g_logFile.reset(new LogFile("log", 500*1000*1000, true, 3, 1024));·最后一个参数1024改为10或者更小，这样在vscode中打开这个文件才能看到日志实时写入了文件
 
 
 # 效果
